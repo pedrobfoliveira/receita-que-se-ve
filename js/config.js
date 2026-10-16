@@ -14,7 +14,7 @@ window.CONFIG = {
    */
   TAREFAS: [
     'Preencha a unidade de atendimento e a data.',
-    'Busque o paciente pelo CPF ou CNS. Como ele ainda não está cadastrado, cadastre-o com dados reais ou fictícios.',
+    'Busque o paciente pelo CPF ou CNS. Como ele ainda não está cadastrado, cadastre-o com dados fictícios.',
     'Adicione medicamentos à receita, escolhendo forma, via, quantidade, horários, duração e cuidados.',
     'Salve esses medicamentos como um modelo e conclua a receita.',
     'Clique em "Fazer nova receita", busque o mesmo paciente pelo CPF ou CNS e monte a receita usando o modelo salvo.',
