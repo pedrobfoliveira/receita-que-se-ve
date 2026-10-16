@@ -147,8 +147,8 @@ formulário em outra aba. O link fica no `href` do botão `final-link`, em
 Os pictogramas utilizados neste protótipo são de autoria de:
 
 - [CONSELHO REGIONAL DE FARMÁCIA DO ESTADO DO PARANÁ](https://transparencia.antigosite.crf-pr.org.br/uploads/documento/19895/4cNeHYJIZEPYPkvJv5Qq10gd6aro-9BP.pdf)
-- [GALATO, F; JUST, M. C.; SILVA, W. B.](https://www.latamjpharm.org/trabajos/25/1/LAJOP_25_1_4_2_839R0O9BUN.pdf) 
-- [ALVES, W. N.; CASTRO, A. F.; PEDROSO, J. F. de L. B.; FAGUNDES, C. S.; BAYER, V. M. L.](https://ojs.unifor.br/RBPS/article/view/14677/8989) 
+- [GALATO, F; JUST, M. C.; SILVA, W. B.](https://www.latamjpharm.org/trabajos/25/1/LAJOP_25_1_4_2_839R0O9BUN.pdf)
+- [ALVES, W. N.; CASTRO, A. F.; PEDROSO, J. F. de L. B.; FAGUNDES, C. S.; BAYER, V. M. L.](https://ojs.unifor.br/RBPS/article/view/14677/8989)
 - [THE NOUN PROJECT](https://thenounproject.com/) — licença CC BY 3.0; autoria indicada em cada imagem
 
 ## Roteiro do teste
