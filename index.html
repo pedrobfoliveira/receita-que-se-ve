@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Receita que se vê | Teste do módulo do profissional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<!-- ===================== CADASTRO DO PROFISSIONAL ===================== -->
+<section id="tela-cadastro" class="tela-entrada" hidden>
+  <div class="caixa-entrada">
+    <p class="marca">Receita que se vê</p>
+    <h1>Cadastro do profissional</h1>
+    <div class="aviso" role="note">
+      <strong>Este é um ambiente de teste.</strong>
+      Você pode usar dados reais ou fictícios, pois eles ficam guardados só nesta aba do 
+      navegador e são apagados quando ela é fechada. Lembre-se do CRM e senha digitados, 
+      você vai precisar deles para entrar no sistema.
+    </div>
+    <form id="form-cadastro" novalidate>
+      <label>Nome completo
+        <input name="nome" autocomplete="off" required>
+      </label>
+      <p class="nota">Você vai entrar no sistema com o conselho, o número do registro e a UF.</p>
+      <div class="linha">
+        <label class="campo-curto">Conselho
+          <select name="conselho">
+            <option value="CRM">CRM</option>
+            <option value="COREN">COREN</option>
+          </select>
+        </label>
+        <label>Número do registro
+          <input name="numero" inputmode="numeric" autocomplete="off" required>
+        </label>
+        <label class="campo-curto">UF
+          <select name="uf" class="sel-uf" required></select>
+        </label>
+      </div>
+      <label>Senha
+        <input name="senha" type="password" autocomplete="new-password" required>
+      </label>
+      <label>Confirme a senha
+        <input name="senha2" type="password" autocomplete="new-password" required>
+      </label>
+      <p class="erro" id="erro-cadastro" role="alert"></p>
+      <button type="submit" class="btn btn-primario">Cadastrar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== LOGIN ===================== -->
+<section id="tela-login" class="tela-entrada" hidden>
+  <div class="caixa-entrada">
+    <p class="marca">Receita que se vê</p>
+    <h1>Entrar</h1>
+    <p class="nota">Use o registro profissional e a senha que você acabou de cadastrar.</p>
+    <form id="form-login" novalidate>
+      <div class="linha">
+        <label class="campo-curto">Conselho
+          <select name="conselho">
+            <option value="CRM">CRM</option>
+            <option value="COREN">COREN</option>
+          </select>
+        </label>
+        <label>Número do registro
+          <input name="numero" inputmode="numeric" autocomplete="username" required>
+        </label>
+        <label class="campo-curto">UF
+          <select name="uf" class="sel-uf" required></select>
+        </label>
+      </div>
+      <label>Senha
+        <input name="senha" type="password" autocomplete="current-password" required>
+      </label>
+      <p class="erro" id="erro-login" role="alert"></p>
+      <button type="submit" class="btn btn-primario">Entrar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== SISTEMA ===================== -->
+<section id="tela-sistema" hidden>
+  <header class="topo">
+    <span class="marca marca-topo">Receita que se vê</span>
+    <span class="selo">Ambiente de teste</span>
+    <span class="espaco"></span>
+    <span class="topo-prof"><span id="topo-nome"></span> <span id="topo-registro" class="topo-registro"></span></span>
+    <button type="button" id="btn-roteiro" class="btn btn-topo" data-nao-contar>Ver roteiro do teste</button>
+    <button type="button" id="btn-finalizar" class="btn btn-topo">Finalizar teste</button>
+  </header>
+
+  <div id="painel-roteiro" class="roteiro" data-nao-contar hidden>
+    <div class="roteiro-conteudo">
+      <h2>Roteiro do teste</h2>
+      <ol id="lista-roteiro"></ol>
+      <button type="button" id="btn-fechar-roteiro" class="btn">Entendi</button>
+    </div>
+  </div>
+
+  <main class="grade">
+    <div class="coluna-form">
+
+      <article class="cartao">
+        <h2><span class="passo">1</span> Atendimento</h2>
+        <div class="linha">
+          <label>Unidade de atendimento
+            <input id="in-unidade" autocomplete="off">
+          </label>
+          <label class="campo-data">Data
+            <input id="in-data" type="date">
+          </label>
+        </div>
+      </article>
+
+      <article class="cartao">
+        <h2><span class="passo">2</span> Paciente</h2>
+
+        <div id="pac-busca">
+          <label for="in-busca">Buscar por CPF ou CNS</label>
+          <div class="busca">
+            <input id="in-busca" inputmode="numeric" autocomplete="off" placeholder="Somente números">
+            <button type="button" id="btn-buscar" class="btn">Buscar</button>
+          </div>
+          <p id="pac-msg" class="msg" role="status"></p>
+
+          <div id="pac-novo" class="pac-novo" hidden>
+            <h3>Cadastrar paciente</h3>
+            <label>Nome completo
+              <input id="np-nome" autocomplete="off">
+            </label>
+            <div class="linha">
+              <label>CPF
+                <input id="np-cpf" inputmode="numeric" autocomplete="off" placeholder="11 dígitos">
+              </label>
+              <span class="ou">ou</span>
+              <label>CNS
+                <input id="np-cns" inputmode="numeric" autocomplete="off" placeholder="15 dígitos">
+              </label>
+            </div>
+            <p class="nota">Apenas um dos dois é obrigatório. Pode usar dados reais ou fictícios.</p>
+            <p class="erro" id="np-erro" role="alert"></p>
+            <div class="acoes">
+              <button type="button" id="btn-salvar-pac" class="btn btn-primario">Cadastrar e usar na receita</button>
+              <button type="button" id="btn-cancelar-pac" class="btn">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="pac-selecionado" hidden></div>
+      </article>
+
+      <article class="cartao">
+        <h2><span class="passo">3</span> Medicamentos</h2>
+
+        <div class="bloco-modelos">
+          <h3>Modelos salvos</h3>
+          <div id="lista-modelos" class="modelos"></div>
+          <p id="modelos-vazio" class="nota">Nenhum modelo salvo ainda. Monte uma receita e salve-a como modelo para reutilizar.</p>
+        </div>
+
+        <div class="sub">
+          <label>Nome e concentração do medicamento
+            <input id="in-med-nome" autocomplete="off" placeholder="Ex.: Losartana 50 mg, Dexametasona creme 0,1%">
+          </label>
+          <p class="nota">Recomendado: escreva a concentração junto do nome (mg, mL, %, UI…).</p>
+
+          <div class="grupo">
+            <h3>Forma</h3>
+            <div id="picks-forma" class="picks"></div>
+          </div>
+
+          <div class="grupo">
+            <h3>Via</h3>
+            <div id="picks-via" class="picks"></div>
+          </div>
+
+          <!-- Este bloco muda conforme a forma escolhida (ver "dose" em pictogramas.js) -->
+          <div class="grupo" id="grupo-dose">
+            <h3 id="dose-titulo">Quantidade por vez</h3>
+            <div class="dose-linha" id="dose-contador">
+              <div class="contador">
+                <button type="button" id="btn-qtd-menos" aria-label="Diminuir quantidade">−</button>
+                <output id="qtd">1</output>
+                <button type="button" id="btn-qtd-mais" aria-label="Aumentar quantidade">+</button>
+              </div>
+              <span class="dose-unidade" id="dose-unidade"></span>
+            </div>
+            <p class="nota" id="dose-nota" hidden></p>
+          </div>
+
+          <div class="grupo">
+            <h3>Quando tomar</h3>
+            <p class="nota">Escolha o período do dia e, se quiser, o horário exato. Ao digitar só o horário, o período é escolhido sozinho.</p>
+            <div id="picks-horario" class="picks"></div>
+            <ul id="lista-tomadas" class="tomadas"></ul>
+            <button type="button" id="btn-add-hora" class="btn btn-hora">+ Horário exato</button>
+          </div>
+
+          <div class="grupo">
+            <h3>Por quanto tempo</h3>
+            <div id="picks-duracao" class="picks">
+              <button type="button" class="pick" data-duracao="continuo" aria-pressed="false"><span>Uso contínuo</span></button>
+              <button type="button" class="pick" data-duracao="dias" aria-pressed="false"><span>Por alguns dias</span></button>
+            </div>
+            <label class="campo-dias" id="campo-dias" hidden>Quantos dias
+              <input id="in-dias" inputmode="numeric" maxlength="3" autocomplete="off" placeholder="Ex.: 7">
+            </label>
+          </div>
+
+          <div class="grupo">
+            <h3>Cuidados (opcional)</h3>
+            <div id="picks-cuidado" class="picks"></div>
+          </div>
+
+          <p class="erro" id="erro-med" role="alert"></p>
+          <button type="button" id="btn-add-med" class="btn btn-primario btn-largo">Adicionar à receita</button>
+          <button type="button" id="btn-cancelar-edicao" class="btn btn-largo" hidden>Cancelar edição</button>
+        </div>
+
+        <div class="sub">
+          <h3>Na receita</h3>
+          <ul id="lista-itens" class="lista"></ul>
+          <p id="lista-vazia" class="vazio-lista">Nenhum medicamento adicionado.</p>
+          <div class="salvar-modelo">
+            <label>Salvar estes medicamentos como modelo
+              <div class="busca">
+                <input id="in-modelo" autocomplete="off" placeholder="Nome do modelo">
+                <button type="button" id="btn-salvar-modelo" class="btn btn-primario">Salvar modelo</button>
+              </div>
+            </label>
+            <p id="modelo-msg" class="msg" role="status"></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="cartao">
+        <h2><span class="passo">4</span> Observações (opcional)</h2>
+        <label>Observações do profissional
+          <textarea id="in-obs" rows="3" maxlength="600" placeholder="Ex.: retornar em 30 dias, evitar bebida alcoólica durante o tratamento"></textarea>
+        </label>
+        <p class="nota">Aparecem na receita logo abaixo do último medicamento.</p>
+      </article>
+    </div>
+
+    <div class="coluna-previa">
+      <div class="previa-topo">
+        <h2><span class="passo">5</span> Prévia da impressão (A4)</h2>
+        <button type="button" id="btn-concluir" class="btn btn-primario">Concluir receita e imprimir</button>
+      </div>
+      <p class="erro" id="erro-concluir" role="alert"></p>
+      <div class="moldura">
+        <div id="folha" class="folha"></div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- ===================== RECEITA CONCLUÍDA ===================== -->
+<div id="modal-concluida" class="modal" hidden>
+  <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-concluida">
+    <h2 id="titulo-concluida">Receita concluída</h2>
+    <p>Se a janela de impressão foi fechada sem imprimir, não há problema: a receita já foi registrada.</p>
+    <div class="acoes acoes-coluna">
+      <button type="button" id="btn-repetir" class="btn btn-primario">Fazer nova receita</button>
+      <button type="button" id="btn-finalizar-modal" class="btn">Finalizar teste</button>
+      <button type="button" id="btn-reimprimir" class="btn-link" data-nao-contar>Abrir a impressão de novo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FIM DO TESTE ===================== -->
+<section id="tela-final" class="tela-entrada" hidden>
+  <div class="caixa-entrada">
+    <p class="marca">Receita que se vê</p>
+    <h1>Obrigado por testar</h1>
+    <p>Agora responda ao questionário de usabilidade. Responda antes de conversar com alguém sobre o sistema.</p>
+    <!-- Link do questionário: troque o endereço em href -->
+    <a id="final-link" class="btn btn-primario" href="https://docs.google.com/forms/d/e/1FAIpQLSfdM3lcpvPtF--DLxxncNJ0QYHtzGt9ykz12t9OyGixWA0vXA/viewform?usp=header" target="_blank" rel="noopener">Responder ao questionário</a>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="js/config.js"></script>
+<script src="pictogramas/pictogramas.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
